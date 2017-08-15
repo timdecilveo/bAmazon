@@ -9,8 +9,8 @@ var connection = mysql.createConnection({
   host: "192.168.99.100",
   port: 3306,
   user: "root",
-  password: "G1n&J00$3",
-  database: "bamazon_db"
+  password: "password",
+  database: "bamazonDB"
 });
 
 connection.connect(function(err) {
@@ -35,9 +35,15 @@ function displayItems(){
         console.log("Item ID: " + result[i].id + " | Product Name: " + result[i].product_name +
           " | Department Name: " + result[i].department_name + " | Price: " + result[i].price +
           " | Stock Quantity: " + result[i].stock_quantity);
+        
+        // It would be better to compose awkward strings 
+        // like this horizontal-rule dyncamically via a
+        // function. Something like hr(80, '-')
         console.log("----------------------------------------------------------------------------------------");
       }
     }
+
+    // Good job calling this from the mysql callback
     userPrompt();
   })
 }
