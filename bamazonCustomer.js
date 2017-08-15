@@ -38,7 +38,7 @@ function displayItems(){
         
         // It would be better to compose awkward strings 
         // like this horizontal-rule dyncamically via a
-        // function. Something like hr(80, '-')
+        // function. Something like hr(80, '-').
         console.log("----------------------------------------------------------------------------------------");
       }
     }
@@ -50,6 +50,11 @@ function displayItems(){
 
 // The app should then prompt users with two messages.
 function userPrompt(){
+
+  // In the future, you'll want to compose object like
+  // these dynamically from the response from the db.
+  // Hard-coding these values is considered a code smell/
+  // bad practic
   var optionArray = ["shoes", "socks", "sandals", "t-shirts", "long sleeve shirts",
                     "blouse", "undershirts", "dress", "pants", "shorts"];
 
@@ -62,6 +67,16 @@ function userPrompt(){
 
   })
   .then(function(answer){
+    
+    // Minutely different functions like the ones below 
+    // are another code smell/bad practice and are a good
+    // candidate for abstraction into a more general purpose
+    // function. Reason being they both 1) add to the overall
+    // size/file-weight of your application—which will slow
+    // things down over the network and 2) they are a maintenance
+    // nightmare. Imagine having to go back and alter each of 
+    // these functions each time some minor change needs to 
+    // happen. Remember, less code means less bugs.
     switch(answer.questionOne){
       case optionArray[0]:
       shoesSearch();
@@ -143,6 +158,9 @@ function userPrompt(){
                 else{
                   // I couldn't quite figure out how to consolidate this into one line of code where it referenced
                   // the specific porduct's price. I know this should be consolidated as it is repeatable code.
+
+                  // See my note above from your switch case about 
+                  // overly repetitious code
                   if(answer.questionOne === optionArray[0]){
                     console.log("The cost of your " + answer.questionOne + " purchase is: " + (answerVal * result[0].price));
                   }
@@ -194,7 +212,8 @@ function userPrompt(){
 }
 
 
-
+// See my note above from your switch case about 
+// overly repetitious code
 function shoesSearch(){console.log("We have finished the prompt for shoes");}
 function socksSearch(){console.log("We have finished the prompt for socks");}
 function sandalsSearch(){console.log("We have finished the prompt for sandals");}
