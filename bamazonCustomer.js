@@ -1,9 +1,5 @@
 var inquirer = require("inquirer");
-var express = require("express");
 var mysql = require("mysql");
-
-// Create express app instance.
-var app = express();
 
 // Specify the port.
 var port = 3000;
@@ -13,8 +9,8 @@ var connection = mysql.createConnection({
   host: "192.168.99.100",
   port: 3306,
   user: "root",
-  password: "password",
-  database: "bamazonDB"
+  password: "G1n&J00$3",
+  database: "bamazon_db"
 });
 
 connection.connect(function(err) {
